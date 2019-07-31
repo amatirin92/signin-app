@@ -1,27 +1,46 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="css/materialize.min.css"
-      media="screen,projection"
-    />
-    <meta charset="UTF-8" />
-
-    <title>Login</title>
-  </head>
-
-  <body>
-    <div>
-      <h1>Login</h1>
+<div class="valign-wrapper" style="width:100%;height:100%;position: absolute;">
+  <div class="valign" style="width:100%;">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m6 offset-m3">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title black-text">Sign In</span>
+              <form>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input
+                      placeholder="Placeholder"
+                      id="email"
+                      type="email"
+                      class="validate"
+                    />
+                    <label for="email" class="active">Email</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input
+                      placeholder="Placeholder"
+                      id="password"
+                      type="password"
+                      class="validate"
+                    />
+                    <label for="password" class="active">Password</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-action">
+              <input type="submit" class="btn" value="Sign In" />
+              <a href="signup" class="waves-effect waves-light btn">Sign Up</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- You can also require other files to run in this process -->
-    <script src="./renderer.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-  </body>
-</html>
+  </div>
+</div>
+
+<!-- You can also require other files to run in this process -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
