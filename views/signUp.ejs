@@ -6,14 +6,17 @@
           <div class="card">
             <div class="card-content">
               <span class="card-title black-text">Sign Up</span>
-              <form>
+              <form action="/users/signup" method="POST">
                 <div class="row">
+                  <% include ./partials/messages %>
                   <div class="input-field col s12">
                     <input
                       placeholder="Placeholder"
                       id="email"
                       type="email"
                       class="validate"
+                      name="email"
+                      value="<%= typeof email != 'undefined' ? email : '' %>"
                     />
                     <label for="email" class="active">Email</label>
                   </div>
@@ -25,6 +28,8 @@
                       id="password"
                       type="password"
                       class="validate"
+                      name="password"
+                      value="<%= typeof password != 'undefined' ? password : '' %>"
                     />
                     <label for="password" class="active">Password</label>
                   </div>
@@ -36,6 +41,7 @@
                       id="passwordConfirm"
                       type="password"
                       class="validate"
+                      name="passwordConfirm"
                     />
                     <label
                       for="passwordConfirm"
@@ -46,10 +52,10 @@
                     >
                   </div>
                 </div>
+                <div class="card-action">
+                  <input type="submit" class="btn" value="Sign Up" />
+                </div>
               </form>
-            </div>
-            <div class="card-action">
-              <input type="submit" class="btn" value="Sign Up" />
             </div>
           </div>
         </div>

@@ -3,24 +3,29 @@
   const url = require("url");
   const path = require("path");
   const mongoose = require("mongoose");
-  let publicPath = path.join(__dirname, "public");
+  const publicPath = path.join(__dirname, "public");
   const PORT = process.env.PORT || 5000;
-  const ejs = require("ejs");
   const expressLayouts = require("express-ejs-layouts");
+  const bodyParser = require("body-parser");
 
   const app = express();
 
-  //DB connection
+  //MongoDB/Mongoose connection
   const db = require("../config/keys").MongoURI;
   mongoose
     .connect(db, { useNewUrlParser: true })
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.error(err));
 
-  //EJS layouts
+  //EJS layouting
   app.set("view engine", "ejs");
   app.use(expressLayouts);
   // app.engine("html", require("ejs").renderFile);
+
+  //Bodyparser
+  //app.use(express.urlencoded({ extended: false }));
+
+  app.use(bodyParser.urlencoded({ extended: true }));
 
   //Routing
   app.use(express.static(publicPath));

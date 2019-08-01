@@ -6,7 +6,7 @@
           <div class="card">
             <div class="card-content">
               <span class="card-title black-text">Sign In</span>
-              <form>
+              <form action="/users/signin" method="POST">
                 <div class="row">
                   <div class="input-field col s12">
                     <input
@@ -14,6 +14,7 @@
                       id="email"
                       type="email"
                       class="validate"
+                      name="email"
                     />
                     <label for="email" class="active">Email</label>
                   </div>
@@ -25,16 +26,19 @@
                       id="password"
                       type="password"
                       class="validate"
+                      name="password"
                     />
                     <label for="password" class="active">Password</label>
                   </div>
                 </div>
-              </form>
+           
             </div>
             <div class="card-action">
               <input type="submit" class="btn" value="Sign In" />
               <a href="signup" class="waves-effect waves-light btn">Sign Up</a>
-            </div>
+            </div>   
+          
+          </form>
           </div>
         </div>
       </div>
