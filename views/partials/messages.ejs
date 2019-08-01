@@ -1,2 +1,16 @@
-<% if(typeof errors != 'undefined') { %> <% errors.forEach((error)=>{ %> <%=
-error.message %> <% }); %> <% } %>
+<% if(typeof errors != 'undefined') { %> 
+<% errors.forEach((error)=>{ %> 
+ <span class="helper-text red accent-4" data-error="wrong" data-success="right"> <%=error.message %> </span>
+        %> <% }); %> <% } %>
+
+<% if (success_message != ''){ %>
+ <span class="helper-text green darken-4" data-error="wrong" data-success="right"><%= success_message %></span>
+<% } %>
+
+<% if (error_message != ''){ %>
+ <span class="helper-text red accent-4" data-error="wrong" data-success="right"><%= error_message %></span>
+<% } %>
+
+<% if (error != ''){ %>
+ <span class="helper-text red accent-4" data-error="wrong" data-success="right"><%= error %></span>
+<% } %>

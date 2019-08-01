@@ -1,16 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const passport = require("passport");
 
 //User Model
 const User = require("../models/User");
+
+//Signin Handle
 
 router
   .get("/signin", (req, res) => {
     res.status(200).render("signin");
   })
-  .post("/signin", (req, res) => {
-    res.status(200).render("home");
+  .post("/signin", (req, res, next) => {
+    passport.authenticate("local", {
+      successRedirect: "/",
+      failureRedirect: "/users/signin",
+      failureFlash: true
+    })(req, res, next);
+    //   res.status(200).render("home");
   });
 
 router
@@ -61,9 +69,12 @@ router
               newUser
                 .save()
                 .then(() => {
+                  req.flash("success_message", "You can now sign in");
+
                   return res.redirect("/users/signin");
                 })
                 .catch(err => {
+                  req.flash("error_message");
                   console.error("error fron new user save", err);
                 });
             })
@@ -72,5 +83,11 @@ router
       });
     }
   });
+
+router.get("/signout", (req, res) => {
+  req.logout();
+  req.flash("success_message", "You are logged out");
+  res.redirect("/users/signin");
+});
 
 module.exports = router;

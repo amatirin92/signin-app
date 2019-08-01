@@ -7,8 +7,14 @@
   const PORT = process.env.PORT || 5000;
   const expressLayouts = require("express-ejs-layouts");
   const bodyParser = require("body-parser");
-
+  const flash = require("connect-flash");
+  const session = require("express-session");
+  const passport = require("passport");
   const app = express();
+
+  //passport config
+
+  require("../config/passport")(passport);
 
   //MongoDB/Mongoose connection
   const db = require("../config/keys").MongoURI;
@@ -20,12 +26,33 @@
   //EJS layouting
   app.set("view engine", "ejs");
   app.use(expressLayouts);
-  // app.engine("html", require("ejs").renderFile);
 
   //Bodyparser
-  //app.use(express.urlencoded({ extended: false }));
-
   app.use(bodyParser.urlencoded({ extended: true }));
+
+  //Session middleware
+  app.use(
+    session({
+      secret: "secret",
+      resave: true,
+      saveUninitialized: true
+    })
+  );
+
+  //Passport middleware
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  //connect flash
+  app.use(flash());
+
+  //global vars
+  app.use((req, res, next) => {
+    res.locals.success_message = req.flash("success_message");
+    res.locals.error_message = req.flash("error_message");
+    res.locals.error = req.flash("error");
+    next();
+  });
 
   //Routing
   app.use(express.static(publicPath));
