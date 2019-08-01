@@ -1,6 +1,5 @@
 (function() {
   const express = require("express");
-  const url = require("url");
   const path = require("path");
   const mongoose = require("mongoose");
   const publicPath = path.join(__dirname, "public");
@@ -13,7 +12,6 @@
   const app = express();
 
   //passport config
-
   require("../config/passport")(passport);
 
   //MongoDB/Mongoose connection

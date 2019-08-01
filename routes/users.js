@@ -18,9 +18,9 @@ router
       failureRedirect: "/users/signin",
       failureFlash: true
     })(req, res, next);
-    //   res.status(200).render("home");
   });
 
+//Signup handle
 router
   .get("/signup", (req, res) => {
     res.render("signup");
@@ -84,6 +84,7 @@ router
     }
   });
 
+//Signout handle
 router.get("/signout", (req, res) => {
   req.logout();
   req.flash("success_message", "You are logged out");
